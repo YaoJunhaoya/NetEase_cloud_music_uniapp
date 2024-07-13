@@ -10,10 +10,6 @@ class YaoMusicUtil {
   static createMusicPlayer(autoplay = false) {
     this.innerAudioContext = uni.createInnerAudioContext();
     this.setMusicPlayerAutoPlay(autoplay);
-    // TODO: 设置音乐播放器的播放地址 暂时设置 方便测试
-    // this.setMusicPlayerSrc(
-    //   "https://m8.music.126.net/20240711130729/db2f70109c2024ae9eb0d23a14812e10/ymusic/0fd6/4f65/43ed/a8772889f38dfcb91c04da915b301617.mp3"
-    // );
   }
   /**
    * 设置音乐播放器自动播放（必须有创建音乐播放器之后才可以调用）

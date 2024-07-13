@@ -52,6 +52,8 @@
 import YaoSkipUtil from "../../utils/skip";
 import YaoToolUtil from "../../utils/tool";
 import RecommendedSong from "../../api/recommended/song";
+import Songparticulars from "../../api/song/Songparticulars";
+import PlaySong from "../../api/song/playSong";
 import YaoMusicUtil from "../../utils/music";
 
 import { onMounted, ref, reactive } from "vue";
@@ -80,9 +82,16 @@ let swiperListPicUrl = ref([]);
  *
  * @author yaojunhao
  **/
-function swiperClick(index) {
+async function swiperClick(index) {
+  const songData = YaoToolUtil.deepClone(swiperList.value[index]);
   console.log("yaojunhao 轮播图点击事件", index);
-  console.log("yaojunhao 轮播图点击图片数据", swiperList.value[index]);
+  console.log("yaojunhao 轮播图点击图片数据", songData);
+  //获取歌曲详情
+  const { data: songDetailData } = await Songparticulars.songDetail(
+    songData.id
+  );
+  console.log("yaojunhao 歌曲详情", songDetailData);
+  PlaySong.playSong(songDetailData.songs[0].id);
 }
 
 /**

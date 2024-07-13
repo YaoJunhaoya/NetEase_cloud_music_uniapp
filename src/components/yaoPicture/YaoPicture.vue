@@ -2,7 +2,9 @@
   <view class="YaoPicture">
     <!-- 图片上隐藏内容 -->
     <view class="YaoPicture_content">
-      <text class="YaoPictur_picName">{{ props.picName }}</text>
+      <text v-if="props.picName" class="YaoPictur_picName">{{
+        props.picName
+      }}</text>
       <!-- 播放按钮 -->
       <view class="YaoPicture_content_play" @tap="playSongList">
         <image src="../../static/播放2.png" mode="scaleToFill" />
@@ -17,14 +19,18 @@
 import PlaySong from "../../api/song/playSong";
 import Songparticulars from "../../api/song/Songparticulars";
 import YaoToolUtil from "../../utils/tool";
+// import useSongStore from "../../pinia/songStore";
+
+// pinia仓库
+// const songStor = useSongStore();
 
 /**
  * 父组件传值
  *
- * @param { String } picUrl 图片地址
+ * @param { String } picUrl 图片地址(必填)
+ * @param { Boolean } songOrSonglist  歌曲还是歌单（默认 true 歌曲）false 歌单(必填)
+ * @param { Number } id  id(必填)
  * @param { String } picName 描述名称
- * @param { Boolean } songOrSonglist  歌曲还是歌单（默认 true 歌曲）false 歌单
- * @param { Number } id  id
  * @author yaojunhao
  **/
 const props = defineProps(["picUrl", "picName", "songOrSonglist", "id"]);
@@ -62,7 +68,9 @@ async function playSongList(
     const { data: songData } = await Songparticulars.songDetail(ids);
     console.log("yaojunhao 歌单的所有歌曲详情", songData);
     // TODO:将列表放入播放列表
-
+    const allPlayList = YaoToolUtil.deepClone(songData);
+    // songStor.allPlayListToLocal(allPlayList.songs);
+    console.log("yaojunhao 播放列表", allPlayList.songs);
     // 播放第一首歌曲
     PlaySong.playSong(songData.songs[0].id);
   }

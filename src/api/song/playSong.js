@@ -38,9 +38,9 @@ class PlaySong {
    * @author yaojunhao
    **/
   async playSong(id) {
-    // 判断是否能播放
+    // 判断歌曲是否能播放
     const { data: checkMusicData } = await this.checkMusic(id);
-    console.log("yaojunhao 判断是否能播放", checkMusicData);
+    console.log("yaojunhao 判断歌曲是否能播放", checkMusicData);
     let ischeckMusic = YaoToolUtil.deepClone(checkMusicData).success;
     console.log("yaojunhao 能否播放", ischeckMusic);
     if (ischeckMusic) {
