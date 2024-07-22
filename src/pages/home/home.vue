@@ -8,13 +8,16 @@
       <!-- 没有登录不显示 -->
       <view v-else class="home_title">
         <text class="greet_sb">早上好</text>
+        <!-- 搜索 -->
         <up-search
           class="home_title_search"
           v-model="searchContent"
           :showAction="false"
+          searchIconColor="#dd001b"
         ></up-search>
       </view>
     </view>
+    <!-- 导航栏 -->
     <!-- 轮播图 -->
     <view class="swiper">
       <up-swiper
@@ -45,6 +48,7 @@
         ></YaoPicture>
       </scroll-view>
     </view>
+    <view>测试</view>
   </view>
 </template>
 
@@ -59,7 +63,7 @@ import YaoMusicUtil from "../../utils/music";
 import { onMounted, ref, reactive } from "vue";
 
 // 是否显示搜索和未登录提示框
-let showSearch = ref(true);
+let showSearch = ref(false);
 // 搜索框内容
 let searchContent = ref("");
 
@@ -184,7 +188,7 @@ onMounted(async () => {
     }
     .recommend_song_list {
       width: 100%;
-      height: 130px;
+      height: 160px;
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;

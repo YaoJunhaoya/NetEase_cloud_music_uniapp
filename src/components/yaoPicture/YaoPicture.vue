@@ -2,9 +2,6 @@
   <view class="YaoPicture">
     <!-- 图片上隐藏内容 -->
     <view class="YaoPicture_content">
-      <text v-if="props.picName" class="YaoPictur_picName">{{
-        props.picName
-      }}</text>
       <!-- 播放按钮 -->
       <view class="YaoPicture_content_play" @tap="playSongList">
         <image src="../../static/播放2.png" mode="scaleToFill" />
@@ -12,6 +9,9 @@
     </view>
     <!-- 图片 -->
     <image :src="props.picUrl" mode="aspectFit" />
+    <text v-if="props.picName" class="YaoPictur_picName">{{
+      props.picName
+    }}</text>
   </view>
 </template>
 
@@ -19,10 +19,10 @@
 import PlaySong from "../../api/song/playSong";
 import Songparticulars from "../../api/song/Songparticulars";
 import YaoToolUtil from "../../utils/tool";
-// import useSongStore from "../../pinia/songStore";
+import useSongStore from "../../pinia/songStore";
 
 // pinia仓库
-// const songStor = useSongStore();
+const songStor = useSongStore();
 
 /**
  * 父组件传值
@@ -69,7 +69,7 @@ async function playSongList(
     console.log("yaojunhao 歌单的所有歌曲详情", songData);
     // TODO:将列表放入播放列表
     const allPlayList = YaoToolUtil.deepClone(songData);
-    // songStor.allPlayListToLocal(allPlayList.songs);
+    songStor.allPlayListToLocal(allPlayList.songs);
     console.log("yaojunhao 播放列表", allPlayList.songs);
     // 播放第一首歌曲
     PlaySong.playSong(songData.songs[0].id);
@@ -101,13 +101,7 @@ async function playSongList(
     top: 0;
     left: 0;
     background-color: #c2c2c256;
-    .YaoPictur_picName {
-      width: @myImg;
-      margin-left: 5px;
-      font-size: 13px;
-      font-weight: 600;
-      color: #2f2f2f;
-    }
+    border-radius: 10px;
     .YaoPicture_content_play {
       position: absolute;
       bottom: 5px;
@@ -124,6 +118,21 @@ async function playSongList(
     width: @myImg;
     height: @myImg;
     border-radius: 10px;
+  }
+  .YaoPictur_picName {
+    width: @myImg;
+    line-height: 16px;
+    height: 32px;
+    margin-left: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2f2f2f;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 设置显示的行数 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: 1px black solid;
   }
 }
 </style>

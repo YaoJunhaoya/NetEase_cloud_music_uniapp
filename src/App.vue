@@ -34,4 +34,11 @@ export default {
 // 巨缝隙 40px 不同项目之间尺寸差异较大，建议使用40px作为全局缝隙
 
 @import "uview-plus/index.scss";
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
 </style>

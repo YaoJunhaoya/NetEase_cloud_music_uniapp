@@ -27,6 +27,12 @@
       "style": {
         "navigationBarTitleText": "我的"
       }
+    },
+    {
+      "path": "pages/yaoPlayer/yaoPlayer",
+      "style": {
+        "navigationBarTitleText": "播放器"
+      }
     }
   ],
   "globalStyle": {
@@ -49,6 +55,7 @@
     }
   ],
   "tabBar": {
+    // "custom": true,
     "color": "#000000",
     "selectedColor": "#dd1e1e",
     "backgroundColor": "#ffffff",
@@ -60,6 +67,14 @@
         "selectedColor": "#dd1e1e",
         "iconPath": "static/首页b.png",
         "selectedIconPath": "static/首页a.png"
+      },
+      {
+        "pagePath": "pages/yaoPlayer/yaoPlayer",
+        "text": "播放器",
+        "color": "#000000",
+        "selectedColor": "#dd1e1e",
+        "iconPath": "static/音乐b.png",
+        "selectedIconPath": "static/音乐a.png"
       },
       {
         "pagePath": "pages/myHome/myHome",
