@@ -29,7 +29,7 @@
       }
     },
     {
-      "path": "pages/yaoPlayer/yaoPlayer",
+      "path": "pages/player/player",
       "style": {
         "navigationBarTitleText": "播放器"
       }
@@ -69,7 +69,7 @@
         "selectedIconPath": "static/首页a.png"
       },
       {
-        "pagePath": "pages/yaoPlayer/yaoPlayer",
+        "pagePath": "pages/player/player",
         "text": "播放器",
         "color": "#000000",
         "selectedColor": "#dd1e1e",

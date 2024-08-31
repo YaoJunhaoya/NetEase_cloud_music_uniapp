@@ -38,7 +38,7 @@ const props = defineProps(["picUrl", "picName", "songOrSonglist", "id"]);
 /**
  * 播放歌曲
  *
- * @param { Number } id 歌曲id
+ * @param { Number } id 歌曲或者歌单 id
  * @param { Boolean } songOrSonglist  歌曲还是歌单（默认 true 歌曲）false 歌单
  * @author yaojunhao
  **/
@@ -75,13 +75,6 @@ async function playSongList(
     PlaySong.playSong(songData.songs[0].id);
   }
 }
-
-/**
- * 描述
- *
- * @param { } data 描述
- * @author yaojunhao
- **/
 </script>
 
 <style lang="less" scoped>

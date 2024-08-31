@@ -2,9 +2,15 @@ import requests from "../index";
 import YaoMusicUtil from "../../utils/music";
 import YaoToolUtil from "../../utils/tool";
 
+import useSongStore from "../../pinia/songStore";
+
+// pinia仓库
+const songStor = useSongStore();
+
 class PlaySong {
   /**
    * 获取音乐 url - 新版
+   * TODO: 必须添加时间戳
    *
    * @param { Number | String  } id 音乐 id
    * @param { String } level 播放音质等级, 分为 standard => 标准,higher => 较高, exhigh=>极高, lossless=>无损, hires=>Hi-Res, jyeffect => 高清环绕声, sky => 沉浸环绕声, jymaster => 超清母带
@@ -35,9 +41,10 @@ class PlaySong {
    * 播放音乐
    *
    * @param { Number | String  } id 音乐 id
+   * @param { Boolean } auto 是否自动播放
    * @author yaojunhao
    **/
-  async playSong(id) {
+  async playSong(id, auto = true) {
     // 判断歌曲是否能播放
     const { data: checkMusicData } = await this.checkMusic(id);
     console.log("yaojunhao 判断歌曲是否能播放", checkMusicData);
@@ -48,10 +55,12 @@ class PlaySong {
       // 获取url
       const { data: SongUrl } = await this.getSongUrlNew(id);
       console.log("yaojunhao 获取音乐 url ", SongUrl);
+      // 存储当前播放的id
+      songStor.currentlyPlayingToLocal(id);
       // 设置播放地址 自动播放
       YaoMusicUtil.setMusicPlayerSrc(
         YaoToolUtil.deepClone(SongUrl).data[0].url,
-        true
+        auto
       );
     } else {
       console.log("yaojunhao 禁止播放", "亲爱的,暂无版权");

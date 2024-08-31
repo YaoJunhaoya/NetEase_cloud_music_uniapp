@@ -1,6 +1,11 @@
 <script>
 import YaoMusicUtil from "./utils/music";
 export default {
+  render() {
+    // 根据条件渲染不同的组件
+    const ComponentToRender = YaoMusicUtil; /* 另一个组件 */
+    return h(ComponentToRender);
+  },
   onLaunch: function () {
     console.log("App Launch");
     // 创建一个音乐播放器
@@ -40,5 +45,9 @@ body {
   height: 100%;
   width: 100%;
   overflow: hidden;
+}
+// 设置全局的滑块大小
+.u-slider {
+  width: 100%;
 }
 </style>

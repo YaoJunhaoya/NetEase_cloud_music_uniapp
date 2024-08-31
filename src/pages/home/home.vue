@@ -49,6 +49,7 @@
       </scroll-view>
     </view>
     <view>测试</view>
+    <YaoPlayer></YaoPlayer>
   </view>
 </template>
 
@@ -59,8 +60,12 @@ import RecommendedSong from "../../api/recommended/song";
 import Songparticulars from "../../api/song/Songparticulars";
 import PlaySong from "../../api/song/playSong";
 import YaoMusicUtil from "../../utils/music";
+import useSongStore from "../../pinia/songStore";
 
 import { onMounted, ref, reactive } from "vue";
+
+// pinia仓库
+const songStor = useSongStore();
 
 // 是否显示搜索和未登录提示框
 let showSearch = ref(false);
@@ -90,12 +95,9 @@ async function swiperClick(index) {
   const songData = YaoToolUtil.deepClone(swiperList.value[index]);
   console.log("yaojunhao 轮播图点击事件", index);
   console.log("yaojunhao 轮播图点击图片数据", songData);
-  //获取歌曲详情
-  const { data: songDetailData } = await Songparticulars.songDetail(
-    songData.id
-  );
-  console.log("yaojunhao 歌曲详情", songDetailData);
-  PlaySong.playSong(songDetailData.songs[0].id);
+
+  songStor.currentlyPlayingToLocal(songData.id);
+  songStor.playSongList(songData.id);
 }
 
 /**
