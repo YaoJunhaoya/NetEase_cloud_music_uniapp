@@ -1,6 +1,11 @@
 <script>
 import YaoMusicUtil from "./utils/music";
 export default {
+  render() {
+    // 根据条件渲染不同的组件
+    const ComponentToRender = YaoMusicUtil; /* 另一个组件 */
+    return h(ComponentToRender);
+  },
   onLaunch: function () {
     console.log("App Launch");
     // 创建一个音乐播放器
@@ -34,4 +39,15 @@ export default {
 // 巨缝隙 40px 不同项目之间尺寸差异较大，建议使用40px作为全局缝隙
 
 @import "uview-plus/index.scss";
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+// 设置全局的滑块大小
+.u-slider {
+  width: 100%;
+}
 </style>

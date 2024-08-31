@@ -13,10 +13,12 @@ const myUrl = {
   c: "https://my-fork-netease-cloud-music-api-vercel-yaojunhaoya.vercel.app/", //vercel的第一个接口（第一第二内容相同的）
   d: "https://my-fork-netease-cloud-music-api-vercel-git-master-yaojunhaoya.vercel.app/", //vercel的第二个接口（第一第二内容相同的）测试
   e: "http://wyapi.sa00.cn/", //网友api
+  f: "https://api.csm.sayqz.com", //别人服务器可以用
+  g: "http://192.168.5.15:3000/",
 };
 
 const requests = axios.create({
-  baseURL: myUrl.a, // 设置根路径 http://localhost:3000
+  baseURL: myUrl.g, // 设置根路径 http://localhost:3000
   adapter: axiosAdapterUniapp,
   timeout: 5000,
   //这告诉服务器请求正文将发送为JSON格式。
